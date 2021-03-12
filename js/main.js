@@ -1,9 +1,19 @@
 "use strict";
 
 (function($) {
+	$("#skltbsResponsive").skeletabs({
+		// equalHeights: true,
+		// animation: "fade-scale",
+		responsive: {
+			breakpoint: 480,
+			headingTagName: "h4"
+		}
+	});
+
 
 	$('.navbar__collapse').on('click', () => {
 		$('#nav').toggleClass('open-menu');
+		$('body').toggleClass('hidden');
 	})
 	///////////////////////////
 	// Mobile dropdown
@@ -13,6 +23,7 @@
 	});
 	$('.navbar-menu--close').on('click', function() {
 		$('#nav').removeClass('open-menu');
+		$('body').removeClass('hidden');
 	})
     ///////////////////////////
 	// On Scroll
@@ -20,7 +31,7 @@
 		var wScroll = $(this).scrollTop();
 
 		// Fixed nav
-		wScroll > 1 ? $('#nav').addClass('fixed-nav') : $('#nav').removeClass('fixed-nav');
+		wScroll > 100 ? $('#nav').addClass('fixed-nav') : $('#nav').removeClass('fixed-nav');
 
 	});
 
@@ -30,7 +41,9 @@
         arrows: false,
         draggable: true,
 		fade: true
-	})
+	});
+	
+
 	$(window).on('load resize', function () {
 		if ($(window).width() < 768) {
 			$('.js-secondary-menu:not(.slick-initialized)').slick({
